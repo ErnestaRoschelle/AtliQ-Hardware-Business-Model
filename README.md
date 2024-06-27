@@ -11,4 +11,47 @@ People buying from these enterprises are CONSUMERS
 
 Understanding P & L Statements:
 
-Gross Price : 30 
+Gross Price : 30 ---------base price of a mouse
+Pre-Invoice Deduction : 2(percent value) ----------------------AtliQ gives a fixed discount to Croma at the beginning of a financial year
+Net Invoice Sales : 28
+Promotional offers : ---------------Croma gives promotional offers on Diwali or Christmas 
+Placement Fees : ------------------AtliQ asks Croma to place their mouse at a prime place to increase sales
+Performance Rebate : --------------If Croma performs good then AtliQ will give discount at the end of a Quater/month/Year
+These 3 things combined is called
+Post-Invoice-Deductions : 3 (percent)
+Net Sales : 25
+NET SALES IS THE REVENUE OF AtliQ
+COGS (Cost of goods sold) : 20 
+                           COGS is ---------Manufacturing cost +
+                                   ---------Freight(Transportation) +
+                                   ---------Other Cost 
+Gross Margin (Profit) : 5
+(when you want GM in percent ,divide Gross margin by Net sales GM/NS)
+Gross Margin % : 20 % 
+
+Understanding the terms:
+Every company has
+Sales Software - Db
+Customer Relationship Management - Db
+Surveys - Excel,PDF formats
+all these are taken care by Software Engineer
+
+Query cannot be carried out directly into the sales software because it might slow the system(machine critical)
+So these data is put into another place called DataWarehouse
+Data Warehouses -----> could be MySQL, ORACLE or mongoDB
+                      or
+                      special Dataware house such as Amazon REDSHIFT or teradata
+
+Now Queries can be carried out in these Data Warehouse by Data Analyst
+To copy all the data from machine critical to data warehouse there is a process called ETL(Extract Transform Load)
+
+What is ETL?
+E-Extract the data
+T-Transform the data ----->Currency Normalization
+                     ----->Derived columns
+                     ----->
+
+
+
+
+                                   
