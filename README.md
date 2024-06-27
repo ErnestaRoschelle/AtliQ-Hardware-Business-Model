@@ -47,9 +47,21 @@ To copy all the data from machine critical to data warehouse there is a process 
 
 What is ETL?
 E-Extract the data
-T-Transform the data ----->Currency Normalization
-                     ----->Derived columns
-                     ----->
+T-Transform the data ----->Currency Normalization--->converting US Dollars to Indian rupees
+                     ----->Derived columns--->calculate profit with columns available
+                     ----->Aggregation --->when u want the data to be in monthly or quaterly wise 
+All these are done by Data Engineer
+
+On the data warehouse developed by ETL ,data analysis is carried out
+
+What os OLTP and OLAP?
+Sales Software and CRM are OLTP (Online Transaction Processing)
+ETL and Data analysis are OLAP (Online Analytical Processing) 
+
+What is Data Catalog?
+Contains information about the databases and the type od data stored in each
+Contains DB server name,Table name,description and Database Admin name
+                     
 
 
 
