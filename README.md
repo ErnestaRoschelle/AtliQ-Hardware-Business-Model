@@ -1,3 +1,7 @@
+Project management tool:JIRA
+Methodology used : Kanban
+
+
 Creation of User-defined functions
 
 **get_fiscal_year function** ---> to get the fiscal year 
