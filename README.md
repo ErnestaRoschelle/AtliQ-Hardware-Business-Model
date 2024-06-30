@@ -97,4 +97,33 @@ limit 1000000;
 Understanding of Jira Software:
 ![Screenshot 2024-06-29 204049](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/52ea1b90-e76e-4dcf-87f6-8300b549ec2c)
 
+----------------------------------------------------------------------------
+## TASK 2
+
+![Screenshot 2024-06-30 113212](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/9b1ad29a-4c4f-4676-8058-6a65ec7abd1b)
+
+### SOLUTION
+
+select s.date,c.market,
+
+ round(sum(sold_quantity*gross_price),2) as total_gross
+       
+ from fact_sales_monthly s
+  
+ join fact_gross_price g 
+ 
+ on s.product_code=g.product_code and 
+       
+ g.fiscal_year=get_fiscal_year(s.date)
+          
+join dim_customer c
+
+on s.customer_code=c.customer_code
+       
+where s.customer_code = 90002002 and c.market='India'
+          
+group by s.date
+
+
+
 
