@@ -212,6 +212,66 @@ find_in set function in Stored Procedure
  ![Screenshot 2024-07-01 185820](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/28b0882e-bd7c-454e-869f-7cbf4a670f00)
 
  SOLUTION:
+
+ #### Learnings from this Stored Procedure
+
+ #### 1. IN (Input Argument)
+
+ #### 2. OUT (Output Argument)
+
+ #### 3. How to write comments
+
+ #### 4. How to set a defualt value
+
+ #### 5. How to use IF Statement to find out the result of a condition
+
+ CREATE DEFINER=`root`@`localhost` PROCEDURE `market_badge`(
+ 
+IN in_market varchar(45),
+
+IN in_fiscal_year year,
+
+OUT out_badge varchar(45)
+
+)
+
+BEGIN
+
+declare total_qty int default 0;
+
+*set default market to be India*
+
+if in_market="" then
+
+set in_market="India";
+
+end if;
+
+*retrieve total qty for a given market and fyear*
+
+select  sum(s.sold_quantity) into total_qty
+
+ from fact_sales_monthly s
+  
+join dim_customer c
+  
+ on s.customer_code=c.customer_code
+    
+ where market =in_market and get_fiscal_year(s.date) = in_fiscal_year
+ 
+ group by c.market;
+  
+   if total_qty > 5000000 then
+        
+   set out_badge = "Gold";
+        
+   else 
+        
+   set out_badge = "Silver";
+         
+   end if;
+         
+END
  
 
 
