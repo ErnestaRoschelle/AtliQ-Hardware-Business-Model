@@ -207,9 +207,12 @@ find_in set function in Stored Procedure
 
 ---------------------------------------------------------------------------------------------------------------
 
- 
+ TASK 5:
  
  ![Screenshot 2024-07-01 185820](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/28b0882e-bd7c-454e-869f-7cbf4a670f00)
+
+ SOLUTION:
+ 
 
 
 
