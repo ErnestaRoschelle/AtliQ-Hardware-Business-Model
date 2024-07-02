@@ -211,21 +211,23 @@ find_in set function in Stored Procedure
  
  ![Screenshot 2024-07-01 185820](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/28b0882e-bd7c-454e-869f-7cbf4a670f00)
 
- SOLUTION:
+ ### SOLUTION:
 
  #### Learnings from this Stored Procedure
 
- #### 1. IN (Input Argument)
+1. IN (Input Argument)
+   
+2. OUT (Output Argument)
 
- #### 2. OUT (Output Argument)
+3. How to write comments
+  
+4. How to set a defualt value
 
- #### 3. How to write comments
+5. How to use IF Statement to find out the result of a condition
 
- #### 4. How to set a defualt value
+#### STORED PROCEDURE:
 
- #### 5. How to use IF Statement to find out the result of a condition
-
- CREATE DEFINER=`root`@`localhost` PROCEDURE `market_badge`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `market_badge`(
  
 IN in_market varchar(45),
 
@@ -272,9 +274,25 @@ join dim_customer c
    end if;
          
 END
- 
 
 
+![Screenshot 2024-07-02 135143](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/60e08bec-b60b-4858-91e3-4d7b7f428a1c)
+This pic shows the stored procedure calling input arguments
+
+
+------------------------------------------------------------------------------------------------
+
+### BENEFITS OF STORED PROCEDURE
+
+1.Convinience  
+
+2.security-limited access is given through stored procedure
+
+3.Maintaintability - easier to read and is reused in other stored procedure
+
+4.Performance - faster than native SQL queries
+
+5.Developer Productivity - easy to reuse this stored procedure in anoter stored procedure
 
 
 
