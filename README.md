@@ -394,3 +394,41 @@ DURATION  is the time taken by the query to execute
 FETCH is the time taken to retrieve data from the database server
 
 ### Query 3
+
+
+
+select 
+
+ s.date,s.product_code,
+      
+ p.product,p.variant,
+      
+ s.sold_quantity, g.gross_price,
+
+ round(sold_quantity*gross_price,2) as gross_price_total,
+      
+ pre.pre_invoice_discount_pct
+      
+from fact_sales_monthly s
+
+join dim_product p
+
+ on s.product_code=p.product_code
+      
+join fact_gross_price g 
+
+ on s.product_code=g.product_code and 
+      
+ g.fiscal_year=s.fiscal_year
+       
+join fact_pre_invoice_deductions pre
+
+ on pre.customer_code=s.customer_code and
+      
+ pre.fiscal_year=s.fiscal_year
+        
+limit 1000000;
+
+this query uses a newly created column fiscal_year in fact_sales_monthly table which reduces more time than compared to the previous two queries
+ 
+
