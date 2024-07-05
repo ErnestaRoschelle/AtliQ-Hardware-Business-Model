@@ -345,9 +345,53 @@ Time for Performance Optimization
 
 ### QUERY OPTIMIZATION
 
-EXPLAIN ANALYZE is a profiling tool for your queries that will show you where MySQL spends time on your query and why
+*EXPLAIN ANALYZE* is a profiling tool for your queries that will show you where MySQL spends time on your query and why
 
-Actual time to get first row (in milliseconds)
-Actual time to get all rows (in milliseconds)
-Actual number of rows read
-Actual number of loops
+1.Actual time to get first row (in milliseconds)
+
+2.Actual time to get all rows (in milliseconds)
+
+3.Actual number of rows read
+
+4.Actual number of loops
+
+DURATION  is the time taken by the query to execute
+
+FETCH is the time taken to retrieve data from the database server
+
+select 
+   s.date,s.product_code,
+       
+   p.product,p.variant,
+       
+   s.sold_quantity, g.gross_price,
+       
+   round(sold_quantity*gross_price,2) as gross_price_total,
+       
+   pre.pre_invoice_discount_pct
+       
+ from fact_sales_monthly s
+ 
+ join dim_product p
+ 
+   on s.product_code=p.product_code
+       
+ join fact_gross_price g 
+ 
+  on s.product_code=g.product_code and 
+       
+   g.fiscal_year=get_fiscal_year(s.fiscal_year)
+        
+ join fact_pre_invoice_deductions pre
+ 
+   on pre.customer_code=s.customer_code and
+   
+   pre.fiscal_year=get_fiscal_year(s.fiscal_year)
+    
+ limit 1000000	
+ 
+
+![Screenshot 2024-07-05 200850](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/df73154e-9970-4072-bb31-7ab9d01870cf)
+
+### duration taken to execute the first query was 23.45 sec 
+### duration taken by the second query (which used new date_table created ) was 2.2 sec
