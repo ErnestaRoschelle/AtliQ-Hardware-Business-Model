@@ -303,10 +303,9 @@ TASK 6
 
 
 ### SOLUTION:
+### Query 1
 
-
-select 
-      s.date,s.product_code,
+select s.date,s.product_code,
       
 p.product,p.variant,
       
@@ -315,7 +314,6 @@ p.product,p.variant,
  round(sold_quantity*gross_price,2) as gross_price_total,pre.pre_invoice_discount_pct
       
 from fact_sales_monthly s
-
 
 join dim_product p
 
@@ -337,30 +335,9 @@ order by date asc
 
 limit 1000000;
 
-![Screenshot 2024-07-05 120043](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/1aaef0d0-d15d-4a84-bf20-22c3c4f54c20)
+### Query 2
 
-The performance of the query is very slow
-
-Time for Performance Optimization
-
-### QUERY OPTIMIZATION
-
-*EXPLAIN ANALYZE* is a profiling tool for your queries that will show you where MySQL spends time on your query and why
-
-1.Actual time to get first row (in milliseconds)
-
-2.Actual time to get all rows (in milliseconds)
-
-3.Actual number of rows read
-
-4.Actual number of loops
-
-DURATION  is the time taken by the query to execute
-
-FETCH is the time taken to retrieve data from the database server
-
-select 
-   s.date,s.product_code,
+select  s.date,s.product_code,
        
    p.product,p.variant,
        
@@ -388,10 +365,32 @@ select
    
    pre.fiscal_year=get_fiscal_year(s.fiscal_year)
     
- limit 1000000	
+ limit 1000000	;
  
 
 ![Screenshot 2024-07-05 200850](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/df73154e-9970-4072-bb31-7ab9d01870cf)
 
 ### duration taken to execute the first query was 23.45 sec 
 ### duration taken by the second query (which used new date_table created ) was 2.2 sec
+
+The performance of the query is very slow
+
+Time for Performance Optimization
+
+### QUERY OPTIMIZATION
+
+*EXPLAIN ANALYZE* is a profiling tool for your queries that will show you where MySQL spends time on your query and why
+
+1.Actual time to get first row (in milliseconds)
+
+2.Actual time to get all rows (in milliseconds)
+
+3.Actual number of rows read
+
+4.Actual number of loops
+
+DURATION  is the time taken by the query to execute
+
+FETCH is the time taken to retrieve data from the database server
+
+### Query 3
