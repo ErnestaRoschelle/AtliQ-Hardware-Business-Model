@@ -302,25 +302,39 @@ TASK 6
 ![Screenshot 2024-07-05 114048](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/f2ec504d-1e32-488d-b38c-f307117459bd)
 
 
-SOLUTION:
+### SOLUTION:
 
 
 select 
       s.date,s.product_code,
-      p.product,p.variant,
-      s.sold_quantity, g.gross_price,
-      round(sold_quantity*gross_price,2) as gross_price_total,pre.pre_invoice_discount_pct
+      
+p.product,p.variant,
+      
+ s.sold_quantity, g.gross_price,
+      
+ round(sold_quantity*gross_price,2) as gross_price_total,pre.pre_invoice_discount_pct
+      
 from fact_sales_monthly s
+
+
 join dim_product p
-      on s.product_code=p.product_code
+
+ on s.product_code=p.product_code
+      
 join fact_gross_price g 
-      on s.product_code=g.product_code and 
-       g.fiscal_year=get_fiscal_year(s.date)
+
+ on s.product_code=g.product_code and 
+      
+g.fiscal_year=get_fiscal_year(s.date)
+       
 join fact_pre_invoice_deductions pre
-      on pre.customer_code=s.customer_code and
-        pre.fiscal_year=get_fiscal_year(s.date)
+
+ on pre.customer_code=s.customer_code and
+      
+ pre.fiscal_year=get_fiscal_year(s.date)
 
 order by date asc
+
 limit 1000000;
 
 ![Screenshot 2024-07-05 120043](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/1aaef0d0-d15d-4a84-bf20-22c3c4f54c20)
@@ -331,4 +345,9 @@ Time for Performance Optimization
 
 ### QUERY OPTIMIZATION
 
+EXPLAIN ANALYZE is a profiling tool for your queries that will show you where MySQL spends time on your query and why
 
+Actual time to get first row (in milliseconds)
+Actual time to get all rows (in milliseconds)
+Actual number of rows read
+Actual number of loops
