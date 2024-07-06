@@ -476,7 +476,7 @@ from cte;
 
 *Instead of CTE we can use *DATABASE VIEW* here,*
 
- ### *VIEW TABLE : pre_invoice_discount*
+ ### *VIEW TABLE 1: pre_invoice_discount*
 
 Query goes like this,
 
@@ -489,7 +489,7 @@ SELECT * ,
  #### Views are virtual tables when invoked produces a result set and are permanent objects in the database used to simplify complex queries for better maintainability and reusability.
  #### CTEs are temporary result sets used within the scope of a single query and are often used  for complex or recursive queries. 
 
-### * VIEW TABLE 2 : post_invoice_discount*
+### *VIEW TABLE 2 : post_invoice_discount*
  
  #### *Using this view ,we query to find out total post _invoice_discount*
 
@@ -501,7 +501,7 @@ SELECT *,
  
  *With the help of this query I created the third view table for net sales
 
-### * VIEW TABLE 2 : NET SALES*
+### *VIEW TABLE 3 : NET SALES*
 
 
    
