@@ -303,7 +303,10 @@ TASK 6
 
 
 ### SOLUTION:
+
 ### Query 1
+
+#### Step1:To find the total gross price
 
 select s.date,s.product_code,
       
@@ -430,5 +433,63 @@ join fact_pre_invoice_deductions pre
 limit 1000000;
 
 this query uses a newly created column fiscal_year in fact_sales_monthly table which reduces more time than compared to the previous two queries
- 
+
+#### Step2:To find the pre invoice discount 
+
+We use Common Table Expression here,
+
+with cte as (
+
+select 
+
+      s.date,s.product_code,
+      
+      p.product,p.variant,
+      
+      s.sold_quantity, g.gross_price,
+      
+      round(sold_quantity*gross_price,2) as gross_price_total,
+      
+      pre.pre_invoice_discount_pct
+      
+from fact_sales_monthly s
+
+join dim_product p
+
+      on s.product_code=p.product_code
+      
+join fact_gross_price g 
+
+      on s.product_code=g.product_code and 
+      
+       g.fiscal_year=s.fiscal_year
+       
+join fact_pre_invoice_deductions pre
+
+      on pre.customer_code=s.customer_code and
+      
+        pre.fiscal_year=s.fiscal_year
+        
+limit 1000000)
+
+select * ,
+
+(gross_price_total-gross_price_total*pre_invoice_discount_pct) as net_invoice_sales
+
+from cte;
+
+Instead of CTE we can use DATABASE VIEW here,
+
+VIEW name : pre_invoice_discount
+
+Query goes like this,
+
+SELECT * ,
+
+(gross_price_total - gross_price_total*pre_invoice_discount_pct) as net_invoice_sales
+
+ FROM gdb0041.pre_invoice_discount;
+
+ ### Views are virtual tables when invoked produces a result set and are permanent objects in the database used to simplify complex queries for better maintainability and reusability.
+ ### CTEs are temporary result sets used within the scope of a single query and are often used  for complex or recursive queries. Views, on the other hand, 
 
