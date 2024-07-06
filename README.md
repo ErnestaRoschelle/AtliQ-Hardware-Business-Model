@@ -436,39 +436,39 @@ this query uses a newly created column fiscal_year in fact_sales_monthly table w
 
 #### Step2:To find the pre invoice discount 
 
-We use Common Table Expression here,
+We use *Common Table Expression* here,
 
 with cte as (
 
 select 
 
-      s.date,s.product_code,
+s.date,s.product_code,
       
-      p.product,p.variant,
+ p.product,p.variant,
+
+ s.sold_quantity, g.gross_price,
       
-      s.sold_quantity, g.gross_price,
+round(sold_quantity*gross_price,2) as gross_price_total,
       
-      round(sold_quantity*gross_price,2) as gross_price_total,
-      
-      pre.pre_invoice_discount_pct
+ pre.pre_invoice_discount_pct
       
 from fact_sales_monthly s
 
 join dim_product p
 
-      on s.product_code=p.product_code
+on s.product_code=p.product_code
       
 join fact_gross_price g 
 
-      on s.product_code=g.product_code and 
+ on s.product_code=g.product_code and 
       
-       g.fiscal_year=s.fiscal_year
+ g.fiscal_year=s.fiscal_year
        
 join fact_pre_invoice_deductions pre
 
-      on pre.customer_code=s.customer_code and
+on pre.customer_code=s.customer_code and
       
-        pre.fiscal_year=s.fiscal_year
+ pre.fiscal_year=s.fiscal_year
         
 limit 1000000)
 
@@ -478,7 +478,7 @@ select * ,
 
 from cte;
 
-Instead of CTE we can use DATABASE VIEW here,
+Instead of CTE we can use *DATABASE VIEW* here,
 
 VIEW name : pre_invoice_discount
 
@@ -491,5 +491,19 @@ SELECT * ,
  FROM gdb0041.pre_invoice_discount;
 
  ### Views are virtual tables when invoked produces a result set and are permanent objects in the database used to simplify complex queries for better maintainability and reusability.
- ### CTEs are temporary result sets used within the scope of a single query and are often used  for complex or recursive queries. Views, on the other hand, 
+ ### CTEs are temporary result sets used within the scope of a single query and are often used  for complex or recursive queries. 
+
+ 2nd VIEW TABLE: post_invoice_discount
+ 
+ #### *Using this view ,we query to find out total post _invoice_discount*
+
+SELECT *,
+
+(1-post_invoice_discount_sales)*net_invoice_sales as net_sales
+
+ FROM gdb0041.post_invoice_disount;
+
+ #### *create another view for NET SALES *
+   
+
 
