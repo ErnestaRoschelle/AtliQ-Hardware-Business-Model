@@ -304,9 +304,9 @@ TASK 6
 
 ### SOLUTION:
 
-### Query 1
+### *Query 1*
 
-#### Step1:To find the total gross price
+#### *Step1:To find the total gross price*
 
 select s.date,s.product_code,
       
@@ -338,7 +338,7 @@ order by date asc
 
 limit 1000000;
 
-### Query 2
+### *Query 2*
 
 select  s.date,s.product_code,
        
@@ -373,28 +373,24 @@ select  s.date,s.product_code,
 
 ![Screenshot 2024-07-05 200850](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/df73154e-9970-4072-bb31-7ab9d01870cf)
 
-### duration taken to execute the first query was 23.45 sec 
-### duration taken by the second query (which used new date_table created ) was 2.2 sec
+#### *duration taken to execute the first query was 23.45 sec* 
+#### *duration taken by the second query (which used new date_table created ) was 2.2 sec*
 
-The performance of the query is very slow
-
-Time for Performance Optimization
-
-### QUERY OPTIMIZATION
+### *QUERY OPTIMIZATION*
 
 *EXPLAIN ANALYZE* is a profiling tool for your queries that will show you where MySQL spends time on your query and why
 
-1.Actual time to get first row (in milliseconds)
+*1.Actual time to get first row (in milliseconds)*
 
-2.Actual time to get all rows (in milliseconds)
+*2.Actual time to get all rows (in milliseconds)*
 
-3.Actual number of rows read
+*3.Actual number of rows read*
 
-4.Actual number of loops
+*4.Actual number of loops*
 
-DURATION  is the time taken by the query to execute
+*DURATION  is the time taken by the query to execute*
 
-FETCH is the time taken to retrieve data from the database server
+*FETCH is the time taken to retrieve data from the database server*
 
 ### Query 3
 
@@ -432,9 +428,9 @@ join fact_pre_invoice_deductions pre
         
 limit 1000000;
 
-this query uses a newly created column fiscal_year in fact_sales_monthly table which reduces more time than compared to the previous two queries
+*this query uses a newly created column fiscal_year in fact_sales_monthly table which reduces more time than compared to the previous two queries*
 
-#### Step2:To find the pre invoice discount 
+#### *Step2:To find the pre invoice discount* 
 
 We use *Common Table Expression* here,
 
@@ -478,9 +474,9 @@ select * ,
 
 from cte;
 
-Instead of CTE we can use *DATABASE VIEW* here,
+*Instead of CTE we can use *DATABASE VIEW* here,*
 
-VIEW name : pre_invoice_discount
+ ### *VIEW TABLE : pre_invoice_discount*
 
 Query goes like this,
 
@@ -490,10 +486,10 @@ SELECT * ,
 
  FROM gdb0041.pre_invoice_discount;
 
- ### Views are virtual tables when invoked produces a result set and are permanent objects in the database used to simplify complex queries for better maintainability and reusability.
- ### CTEs are temporary result sets used within the scope of a single query and are often used  for complex or recursive queries. 
+ #### Views are virtual tables when invoked produces a result set and are permanent objects in the database used to simplify complex queries for better maintainability and reusability.
+ #### CTEs are temporary result sets used within the scope of a single query and are often used  for complex or recursive queries. 
 
- 2nd VIEW TABLE: post_invoice_discount
+### * VIEW TABLE 2 : post_invoice_discount*
  
  #### *Using this view ,we query to find out total post _invoice_discount*
 
@@ -502,8 +498,12 @@ SELECT *,
 (1-post_invoice_discount_sales)*net_invoice_sales as net_sales
 
  FROM gdb0041.post_invoice_disount;
+ 
+ *With the help of this query I created the third view table for net sales
 
- #### *create another view for NET SALES *
+### * VIEW TABLE 2 : NET SALES*
+
+
    
 
 
