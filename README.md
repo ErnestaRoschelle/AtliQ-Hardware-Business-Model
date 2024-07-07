@@ -504,6 +504,17 @@ SELECT *,
 ### *VIEW TABLE 3 : NET SALES*
 
 
+---------------------------------------------------------------------------------
+
+TASK 7
+
+Create a view for gross sales. It should have the following columns,
+
+date, fiscal_year, customer_code, customer, market, product_code, product, variant,
+
+sold_quanity, gross_price_per_item, gross_price_total
+
+
    
 
 
