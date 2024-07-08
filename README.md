@@ -555,11 +555,168 @@ join fact_gross_price g
      
    s.fiscal_year=g.fiscal_year
 
+-----------------------------------------------------------------------------------------
+
+TASK 8:
+
+![Screenshot 2024-07-08 114609](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/e678c796-1f7d-4464-8f58-94954ca93809)
 
 
+SOLUTION
+
+SELECT market,
+
+round(sum(net_sales)/1000000,2) as net_sales_million
+
+ FROM gdb0041.net_sales
+ 
+ where fiscal_year=2021
+ 
+ group by market
+ 
+ order by net_sales_million desc
+ 
+ limit 5;
+
+ *Using this query lets create a Stored procedure,so that each time a different fiscal year is entered*
+
+#### *Stored procedure : get_top_n_markets_for_net_sales
+
+ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_top_n_markets_for_net_sales`(
+ 
+in_fiscal_year int,
+
+top_n int
+
+)
+
+BEGIN
+
+SELECT market,
+
+round(sum(net_sales)/1000000,2) as net_sales_million
+
+ FROM gdb0041.net_sales
+ 
+ where fiscal_year=in_fiscal_year
+ 
+ group by market
+ 
+ order by net_sales_million desc
+ 
+ limit top_n;
+ 
+END
+
+#### *OUTPUT*
+
+![Screenshot 2024-07-08 123301](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/26b07c41-e36c-4156-b9d1-9ca1d1f7a72c)
+
+----------------------------------------------------------------------------------------------------
+
+TASK 9
+
+![Screenshot 2024-07-08 125505](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/a4709418-3ae9-443d-a37f-031e262745b7)
+
+ select customer ,
+ 
+ round(sum(net_sales)/1000000,2) as net_sales_million
+ 
+ from net_sales ns
+ 
+ join dim_customer c
+ 
+   on ns.customer_code=c.customer_code
+      
+ where fiscal_year = 2021
+ 
+ group by customer
+ 
+ order by net_sales_million desc
+ 
+ limit 3;
+
+ #### *Using this query we create stored procedure for finding out top 'n' customers in a given market,fiscal year*
+
+ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_top_n_customer_net_sales`(
+ 
+in_market varchar(45),
+
+in_fiscal_year int,
+
+in_top_n int)
+
+BEGIN
+
+ select customer ,
+ 
+ round(sum(net_sales)/1000000,2) as net_sales_million
+ 
+ from net_sales ns
+ 
+ join dim_customer c
+ 
+   on ns.customer_code=c.customer_code
+      
+ where fiscal_year = in_fiscal_year and ns.market=c.market
+ 
+ group by customer
+ 
+ order by net_sales_million desc
+ 
+ limit in_top_n;
+ 
+END
+
+*OUTPUT*
+
+![Screenshot 2024-07-08 124727](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/3872c66f-3a5e-43aa-bca8-3eb9e0812e2b)
 
 
+ #### *note:*
+ #### *in represents input parameteres in the stored procedure* 
+ #### *Stored procedure is used to find top or bottom 'n'*
 
+ -------------------------------------------------------------------------------
+
+ TASK 10 - EXERCISE
+ 
+
+ ![Screenshot 2024-07-08 125522](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/5c5faa3b-8a58-4fcb-b076-2fcdddb13b90)
+ 
+
+ * Stored procedure to find the top n products*
    
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_top_n_products`(
+
+in_fiscal_year int,
+
+in_top_n int)
+
+BEGIN
+
+select product ,
+
+ round(sum(net_sales)/1000000,2) as net_sales_million
+ 
+ from net_sales ns
+ 
+ where fiscal_year = in_fiscal_year
+ 
+ group by product
+ 
+ order by net_sales_million desc
+ 
+ limit in_top_n;
+
+END
+
+*OUTPUT*
+
+![Screenshot 2024-07-08 130529](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/3e0776e9-5278-4bdc-b439-bd2f4c85b8cd)
+
+
+ 
+ 
 
 
