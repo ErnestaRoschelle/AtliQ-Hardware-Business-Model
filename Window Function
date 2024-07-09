@@ -26,7 +26,7 @@ sum(amount) over(partition by category order by date) as total_till_date
 FROM random_tables.expenses
 order by date,category;
 
-
-
 NOTE : Cumulative sum is adding the amount until all the amount has been added one by one 
 example : Bank balance
+
+
