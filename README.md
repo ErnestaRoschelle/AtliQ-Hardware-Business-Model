@@ -716,9 +716,10 @@ END
 ![Screenshot 2024-07-08 130529](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/3e0776e9-5278-4bdc-b439-bd2f4c85b8cd)
 
 
-https://ray.so/w4PonYi 
  
 ![image](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/2ba71044-c932-4f38-8c1f-8d612cfc8c3e)
 
 ![image](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/333d10e6-3c36-4fce-87c6-4bc066d837de)
+
+
 
