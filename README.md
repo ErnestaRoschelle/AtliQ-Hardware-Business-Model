@@ -721,5 +721,84 @@ END
 
 ![image](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/333d10e6-3c36-4fce-87c6-4bc066d837de)
 
+----------------------------------------------------------------------------------------------
+
+### Task 11
+
+Learnings in this task
+
+1.What are Window functions?
+
+2.When to use them?
+
+#### 1.Find out the % with respect to the total amount
+
+SELECT *,
+
+amount*100/sum(amount) over() as pct
+
+FROM random_tables.expenses
+
+order by category;
+
+NOTE : Here over() is a window function and every row acts like a window
+
+#### 2.Find out the % with respect to the total amount grouped by category
+
+SELECT *,
+
+amount*100/sum(amount) over(partition by category) as pct
+
+FROM random_tables.expenses
+
+order by category;
+
+NOTE : Here OVER(PARTITION BY ...) is a window function and each category serves as a window
+
+#### 3..Find out the amount spent with respect to category
+
+SELECT *,
+
+sum(amount) over(partition by category order by date) as total_till_date
+
+FROM random_tables.expenses
+
+order by date,category;
+
+NOTE : Cumulative sum is adding the amount until all the amount has been added one by one 
+
+example : Bank balance
+
+#### 4.Display the top 10 customer  market share distribution
+
+ with cte as (
+ 
+ select customer ,
+ 
+ round(sum(net_sales)/1000000,2) as net_sales_million
+ 
+ from net_sales ns
+ 
+ join dim_customer c
+ 
+   on ns.customer_code=c.customer_code
+      
+ where fiscal_year = '2021'
+ 
+ group by customer
+ 
+ order by net_sales_million desc)
+ 
+ select *,
+ 
+ (net_sales_million*100)/sum(net_sales_million) over() as pct
+ 
+ from cte
+ 
+ order by net_sales_million desc;
+ 
+![Screenshot 2024-07-10 212127](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/e41a9b9a-61e4-4036-9f53-fc30358c7e95)
+
+-----------------------------------------------------------------------------------------
 
 
