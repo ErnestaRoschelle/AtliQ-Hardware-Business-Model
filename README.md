@@ -802,3 +802,32 @@ example : Bank balance
 -----------------------------------------------------------------------------------------
 
 
+### 4. Display the market share with respect to Net Sales
+
+
+![Screenshot 2024-07-11 135055](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/1a671379-bd95-47ca-a564-9360527badd2)
+
+
+  with cte as (
+  
+ select customer , region,
+ 
+ round(sum(net_sales)/1000000,2) as net_sales_million
+ 
+ from net_sales ns
+ 
+ join dim_customer c
+ 
+   on ns.customer_code=c.customer_code
+      
+ where fiscal_year = '2021'
+ 
+ group by customer,region 
+ 
+ select *,
+ 
+ (net_sales_million*100)/sum(net_sales_million) over(partition by region) as pct
+ 
+ from cte
+ 
+ order by region;
