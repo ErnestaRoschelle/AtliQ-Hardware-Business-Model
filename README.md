@@ -831,4 +831,7 @@ example : Bank balance
  from cte
  
  order by region;
- 
+
+
+ ![Screenshot 2024-07-12 112905](https://github.com/user-attachments/assets/121ebe0e-9598-4de9-8e8c-ddcd84ffe52e)
+
