@@ -835,3 +835,139 @@ example : Bank balance
 
  ![Screenshot 2024-07-12 112905](https://github.com/user-attachments/assets/121ebe0e-9598-4de9-8e8c-ddcd84ffe52e)
 
+
+----------------------------------------------------------------------------------------------
+
+
+#### TASK 12
+
+#### EXPLORING WINDOW FUNCTIONS - RANK(),ROW NUMBER() , DENSE RANK()
+
+1.Show TOP 2 Expenses
+
+with cte as 
+
+(
+
+select * ,
+
+  row_number() over(partition by  category order by amount desc) as rn,
+      
+  rank() over(partition by category order by amount desc) as rkn,
+      
+  dense_rank() over(partition by category order by amount desc) as dr
+      
+from expenses
+
+order by category)
+
+select *
+
+from cte; 
+
+2. Display Top 5 students
+
+with cte as 
+
+(
+
+select * ,
+
+   row_number() over( order by marks desc) as rn,
+      
+   rank() over(order by marks desc) as rkn,
+      
+   dense_rank() over(order by marks desc) as dr
+      
+from student_marks
+
+order by marks desc)
+
+select *
+
+from cte; 
+
+3.
+
+![Screenshot 2024-07-16 133653](https://github.com/user-attachments/assets/35d23541-cd9f-494b-ac34-518ef5f6c338)
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_topn_products_division_wise_total_sales_qty`(
+
+in_fiscal_year int,
+
+in_top_n int)
+
+BEGIN
+
+with cte as (SELECT p.division,
+
+p.product,
+     
+sum(sm.sold_quantity) as total_qty_sold
+     
+FROM dim_product p
+   
+JOIN fact_sales_monthly sm
+   
+on p.product_code=sm.product_code
+   
+where fiscal_year=in_fiscal_year
+   
+group by p.product,p.division
+   
+order by division),
+   
+cte1 as    (select *,
+
+ dense_rank() over(partition by division order by total_qty_sold desc) as drk
+        
+  from cte)
+           
+ select * 
+ 
+ from cte1 
+ 
+ where  drk<=in_top_n;  
+ 
+END
+
+
+
+
+
+
+
+4.Retrieve the top 2 markets in every region by their gross sales amount in FY=2021. 
+
+with cte1 as (SELECT c.market,
+
+c.region,
+
+round(sum(gs.total_gross)/1000000,2) as total_gp
+
+FROM dim_customer c
+
+join gross_sales gs
+
+on c.customer_code=gs.customer_code
+
+where fiscal_year=2021
+
+group by market,region
+
+),
+
+cte2 as (select *,
+
+dense_rank() over(partition by region order by total_gp desc) as drk
+
+from cte1)
+
+select * 
+
+from cte2 
+
+where drk <=2;
+
+
+
