@@ -967,7 +967,13 @@ select *
 
 from cte2 
 
-where drk <=2;
+where drk <=2
+
+-----------------------------------------------------------------------------------------
+
+## JIRA TASK RELATED TO SUPPLY CHAIN DOMAIN
+
+![Screenshot 2024-07-27 213632](https://github.com/user-attachments/assets/ec4e075d-8477-450a-a2d6-88f45f6d2868)
 
 
 
