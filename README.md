@@ -1005,4 +1005,8 @@ STEP 3: performed JOIN with both tables and retrieved result by comparing foreca
 
 ---------------------------------------------
 
+# Difference between Subquery / Views / CTE / Temporary tables
+
+cte's are readable,reusable,recursion 
+subquery can be used in select and where clause
 
