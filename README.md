@@ -975,7 +975,9 @@ where drk <=2
 
 ![Screenshot 2024-07-27 213632](https://github.com/user-attachments/assets/ec4e075d-8477-450a-a2d6-88f45f6d2868)
 
+
 ![image](https://github.com/user-attachments/assets/3c0adf4e-32f9-40f9-b9c3-aca7f9740566)
+
 
 OUTPUT:
 
@@ -985,5 +987,22 @@ OUTPUT:
 
 Temporary table is valid for entire session while CTE is valid within the scope of the query 
 
+EXERCISE :
+
+Provide report for customers where forecast accuracy dropped from 2020 to 2021
+
+ STEP 1:Created temporary table and retrieved result set for fiscal year 2020 
+ 
+![image](https://github.com/user-attachments/assets/831620c4-506f-4a3c-92b1-7d182e96c1aa)
+
+STEP 2:Created temporary table and retrieved result set for fiscal year 2021
+
+![image](https://github.com/user-attachments/assets/799a80d5-12b2-4bda-b157-3f5c68bbf31d)
+
+STEP 3: performed JOIN with both tables and retrieved result by comparing forecast accuracy of 2020 and 2021
+
+![image](https://github.com/user-attachments/assets/d3ae75d7-0e52-48a3-a2d4-faee9965f3ab)
+
+---------------------------------------------
 
 
