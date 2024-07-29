@@ -975,5 +975,15 @@ where drk <=2
 
 ![Screenshot 2024-07-27 213632](https://github.com/user-attachments/assets/ec4e075d-8477-450a-a2d6-88f45f6d2868)
 
+![image](https://github.com/user-attachments/assets/3c0adf4e-32f9-40f9-b9c3-aca7f9740566)
+
+OUTPUT:
+
+![Screenshot 2024-07-29 153734](https://github.com/user-attachments/assets/43cc26f9-4e06-459c-90ee-4e1ac31a1b12)
+
+## Temporary Table Vs CTE
+
+Temporary table is valid for entire session while CTE is valid within the scope of the query 
+
 
 
