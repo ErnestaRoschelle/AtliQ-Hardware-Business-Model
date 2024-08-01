@@ -1,8 +1,8 @@
 # AtliQ-Hardware-Business-Model
 
-## Understanding AtliQ HArdware
+## Understanding AtliQ Hardware 
 
-## DOMAIN KNOWLEDGE - Consumer Goods Company
+## Domain Knowledge - Consumer Goods Company
 
 ->Atliq HArdware is a hardware company which sells pcs,mouse,printers and keyboards to customers like croma,best buy etc from where people can purchase 
 
