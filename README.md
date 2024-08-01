@@ -1,5 +1,28 @@
-*Project management tool*:JIRA
+# AtliQ-Hardware-Business-Model
+
+## DOMAIN KNOWLEDGE
+
+*Understanding AtliQ HArdware - Consumer Goods Company
+
+*Atliq HArdware is a hardware company which sells pcs,mouse,printers and keyboards to customers like croma,best buy etc from where people can purchase 
+
+*Enterprises like Croma and Best Buy are CUSTOMERS 
+
+*There are two types of customers(Platforms) :  Brick & Mortar , E-Commerce
+
+*Croma and Best Buy comes under BRick and Mortar while Amazon and Flipkart comes under E-Commerce
+
+*3 Channels : Retailer, Direct and Distributor
+
+*People buying from these enterprises are  **CONSUMERS**
+
 *Methodology used* : Kanban
+
+*Project management tool*: JIRA
+
+![Screenshot 2024-08-01 115538](https://github.com/user-attachments/assets/10983eda-6cd3-4daf-955f-5d5cbc4a5104)
+
+
 ## TASK 1
 ![Screenshot 2024-06-29 204559](https://github.com/ErnestaRoschelle/AtliQ-Hardware-Business-Model/assets/145251891/0028beb0-8114-410d-b0d3-59dea198c7e3)
 
